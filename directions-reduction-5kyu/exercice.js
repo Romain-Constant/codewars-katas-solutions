@@ -39,52 +39,17 @@ if you want to translate, please ask before translating. */
 
 function dirReduc(arr){
     
-    let direction = []
-
-    for (let d of arr) {
-        if (direction.length === 0) {
-            direction.push(d)
-            
+    for (let i = 0; i < arr.length; i++) {
+        if ((arr[i] === "NORTH" && arr[i+1] === "SOUTH") || (arr[i] === "SOUTH" && arr[i+1] === "NORTH") || (arr[i] === "WEST" && arr[i+1] === "EAST") || (arr[i] === "EAST" && arr[i+1] === "WEST")) {
+            arr.splice(i,2)
+            return dirReduc(arr)
         }
-        else {
-            if (direction[direction.length - 1] === "NORTH") {
-                if (d === "SOUTH") {
-                    direction.pop()
-                }
-                else {
-                    direction.push(d)
-                }
-            }
-            else if (direction[direction.length - 1] === "SOUTH") {
-                if (d === "NORTH") {
-                    direction.pop()
-                }
-                else {
-                    direction.push(d)
-                }
-            }
-            else if (direction[direction.length - 1] === "EAST") {
-                if (d === "WEST") {
-                    direction.pop()
-                }
-                else {
-                    direction.push(d)
-                }
-            }
-            else if (direction[direction.length - 1] === "WEST") {
-                if (d === "EAST") {
-                    direction.pop()
-                }
-                else {
-                    direction.push(d)
-                }
-            }
-            
-        }
-        
     }
-    return direction
+    return arr
+
   }
+
+
 
 
 

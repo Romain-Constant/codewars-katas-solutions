@@ -1,16 +1,29 @@
-/* If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+/* Complete the solution so that it splits the string into pairs of two characters. If the string contains an odd number of characters then it should replace the missing second character of the final pair with an underscore ('_').
 
-Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in. Additionally, if the number is negative, return 0 (for languages that do have them).
+Examples:
 
-Note: If the number is a multiple of both 3 and 5, only count it once. */
+* 'abc' =>  ['ab', 'c_']
+* 'abcdef' => ['ab', 'cd', 'ef'] */
 
-function solution(number){
-    let sum = 0
-  
-    for (let n = 1; n < number; n++) {
-        if (n % 3 === 0 || n % 5 === 0) {
-            sum+=n
+function solution(str) {
+    let returnArray = [];
+    if (str === "") {
+        return returnArray;
+    }
+    else if (str.length % 2 === 0) {
+        for (let i = 0; i < str.length; i += 2) {
+            returnArray.push(str[i] + str[i + 1]);
         }
     }
-    return sum  
+    else {
+        for (let i = 0; i < str.length; i += 2) {
+            if (i === str.length - 1) {
+                returnArray.push(str[i] + "_");
+            }
+            else {
+                returnArray.push(str[i] + str[i + 1]);
+            }
+        }
+    }
+    return returnArray;
 }
